@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="StudyBalance AI helps students understand their academic burnout risk with a transparent, educational self-check."
+    />
+    <title>StudyBalance AI – Student Burnout Risk Prediction System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="theme-dark">
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Main navigation">
+        <div class="brand-wrap">
+          <div class="brand-mark" aria-hidden="true">
+            <span>SB</span>
+          </div>
+          <div>
+            <p class="brand-name">StudyBalance AI</p>
+          </div>
+        </div>
+
+        <nav class="sidebar-nav" aria-label="Sidebar links">
+          <button class="nav-btn active" data-nav="home" type="button">
+            <span class="nav-icon">⌂</span>
+            <span>Home</span>
+          </button>
+          <button class="nav-btn" data-nav="assessment" type="button">
+            <span class="nav-icon">✓</span>
+            <span>Assessment</span>
+          </button>
+          <button class="nav-btn" data-nav="results" type="button">
+            <span class="nav-icon">◎</span>
+            <span>Results</span>
+          </button>
+          <button class="nav-btn" data-nav="dashboard" type="button">
+            <span class="nav-icon">▣</span>
+            <span>Dashboard</span>
+          </button>
+          <button class="nav-btn" data-nav="planner" type="button">
+            <span class="nav-icon">🗓</span>
+            <span>Study Planner</span>
+          </button>
+          <button class="nav-btn" data-nav="history" type="button">
+            <span class="nav-icon">⟲</span>
+            <span>History</span>
+          </button>
+          <button class="nav-btn" data-nav="about" type="button">
+            <span class="nav-icon">?</span>
+            <span>About &amp; Help</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-footer">
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark theme">
+            <span class="toggle-track">
+              <span class="toggle-thumb"></span>
+            </span>
+            <span class="toggle-label">Dark mode</span>
+          </button>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <button class="mobile-menu" id="mobileMenu" aria-label="Open navigation" type="button">☰</button>
+          <div class="topbar-title">
+            <p class="eyebrow">Student wellness support</p>
+            <h1>StudyBalance AI</h1>
+          </div>
+        </header>
+
+        <section id="home" class="page active" aria-label="Home section">
+          <div class="hero">
+            <div class="hero-copy">
+              <span class="pill">Educational wellness check</span>
+              <h2>Understand Your Study Stress. Build a Healthier Balance.</h2>
+              <p>
+                StudyBalance AI gives you a simple estimate of academic burnout risk based on study patterns,
+                sleep, stress, motivation, and recovery habits. It is designed for awareness and reflection—not as a medical diagnosis.
+              </p>
+              <div class="hero-actions">
+                <button class="primary-btn" type="button" data-nav="assessment">Check My Burnout Risk</button>
+                <button class="secondary-btn" type="button" data-nav="dashboard">Explore Dashboard</button>
+              </div>
+            </div>
+
+            <div class="hero-visual" aria-hidden="true">
+              <div class="student-art">
+                <div class="desk"></div>
+                <div class="monitor"></div>
+                <div class="student-head"></div>
+                <div class="student-body"></div>
+                <div class="study-card">
+                  <span>Sleep</span>
+                  <strong>6.5h</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-grid">
+            <article class="feature-card">
+              <div class="feature-icon">⚡</div>
+              <h3>Risk Assessment</h3>
+              <p>Answer a short questionnaire to explore patterns linked to study overload and exhaustion.</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon">📊</div>
+              <h3>Study Analytics</h3>
+              <p>Review scores, trends, and the main factors influencing your current workload balance.</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon">💡</div>
+              <h3>Personalized Tips</h3>
+              <p>Get practical suggestions based on your study rhythm, sleep quality, and stress level.</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon">📈</div>
+              <h3>Progress Tracking</h3>
+              <p>Save previous assessments and monitor changes over time with your local history.</p>
+            </article>
+          </div>
+
+          <div class="notice-box">
+            <strong>Disclaimer:</strong> This tool provides an educational estimate of burnout-like patterns based on a transparent rule-based model. It is not a medical diagnosis or clinically validated assessment.
+          </div>
+        </section>
+
+        <section id="assessment" class="page" aria-label="Assessment section">
+          <div class="section-heading">
+            <p class="eyebrow">Burnout check</p>
+            <h2>Student Burnout Risk Assessment</h2>
+          </div>
+
+          <div class="assessment-card">
+            <div class="stepper" id="stepIndicator" aria-label="Assessment progress"></div>
+
+            <form id="assessmentForm" novalidate>
+              <div class="step-panel active" data-step="0">
+                <div class="question-block">
+                  <h3>1. Daily study hours</h3>
+                  <div class="options-grid two-col">
+                    <label class="option-card"><input type="radio" name="studyHours" value="less-than-2" /> <span>Less than 2 hours</span></label>
+                    <label class="option-card"><input type="radio" name="studyHours" value="2-to-4" /> <span>2–4 hours</span></label>
+                    <label class="option-card"><input type="radio" name="studyHours" value="4-to-6" /> <span>4–6 hours</span></label>
+                    <label class="option-card"><input type="radio" name="studyHours" value="6-to-8" /> <span>6–8 hours</span></label>
+                    <label class="option-card full-width"><input type="radio" name="studyHours" value="more-than-8" /> <span>More than 8 hours</span></label>
+                  </div>
+                </div>
+
+                <div class="question-block">
+                  <h3>2. Average nightly sleep</h3>
+                  <div class="options-grid two-col">
+                    <label class="option-card"><input type="radio" name="sleep" value="less-than-4" /> <span>Less than 4 hours</span></label>
+                    <label class="option-card"><input type="radio" name="sleep" value="4-to-5" /> <span>4–5 hours</span></label>
+                    <label class="option-card"><input type="radio" name="sleep" value="6-to-7" /> <span>6–7 hours</span></label>
+                    <label class="option-card full-width"><input type="radio" name="sleep" value="8-or-more" /> <span>8 or more hours</span></label>
+                  </div>
+                </div>
+
+                <div class="question-block">
+                  <h3>3. Academic stress level</h3>
+                  <div class="slider-range" data-slider="stress">
+                    <div class="slider-header"><span>Low</span><span>High</span></div>
+                    <input type="range" min="1" max="5" step="1" value="3" name="stress" />
+                    <div class="slider-labels"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="step-panel" data-step="1">
+                <div class="question-block">
+                  <h3>4. Difficulty concentrating</h3>
+                  <div class="slider-range" data-slider="concentration">
+                    <div class="slider-header"><span>Easy</span><span>Very hard</span></div>
+                    <input type="range" min="1" max="5" step="1" value="3" name="concentration" />
+                    <div class="slider-labels"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+                  </div>
+                </div>
+
+                <div class="question-block">
+                  <h3>5. Study motivation</h3>
+                  <div class="slider-range" data-slider="motivation">
+                    <div class="slider-header"><span>Very motivated</span><span>Very low</span></div>
+                    <input type="range" min="1" max="5" step="1" value="3" name="motivation" />
+                    <div class="slider-labels"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+                  </div>
+                </div>
+
+                <div class="question-block">
+                  <h3>6. How often do you feel overwhelmed by assignments?</h3>
+                  <div class="slider-range" data-slider="overwhelmed">
+                    <div class="slider-header"><span>Rarely</span><span>Always</span></div>
+                    <input type="range" min="1" max="5" step="1" value="3" name="overwhelmed" />
+                    <div class="slider-labels"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="step-panel" data-step="2">
+                <div class="question-block">
+                  <h3>7. Frequency of taking breaks</h3>
+                  <div class="options-grid three-col">
+                    <label class="option-card"><input type="radio" name="breaks" value="rarely" /> <span>Rarely</span></label>
+                    <label class="option-card"><input type="radio" name="breaks" value="sometimes" /> <span>Sometimes</span></label>
+                    <label class="option-card"><input type="radio" name="breaks" value="regularly" /> <span>Regularly</span></label>
+                  </div>
+                </div>
+
+                <div class="question-block">
+                  <h3>8. Difficulty maintaining work-life balance</h3>
+                  <div class="slider-range" data-slider="workLifeBalance">
+                    <div class="slider-header"><span>Easy</span><span>Very hard</span></div>
+                    <input type="range" min="1" max="5" step="1" value="3" name="workLifeBalance" />
+                    <div class="slider-labels"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+                  </div>
+                </div>
+
+                <div class="question-block">
+                  <h3>9. How often do you feel mentally exhausted after studying?</h3>
+                  <div class="slider-range" data-slider="exhaustion">
+                    <div class="slider-header"><span>Rarely</span><span>Very often</span></div>
+                    <input type="range" min="1" max="5" step="1" value="3" name="exhaustion" />
+                    <div class="slider-labels"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="step-panel" data-step="3">
+                <div class="question-block">
+                  <h3>10. Satisfaction with your current study routine</h3>
+                  <div class="slider-range" data-slider="satisfaction">
+                    <div class="slider-header"><span>Very satisfied</span><span>Very unsatisfied</span></div>
+                    <input type="range" min="1" max="5" step="1" value="3" name="satisfaction" />
+                    <div class="slider-labels"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-message" id="formError" aria-live="polite"></div>
+
+              <div class="form-actions">
+                <button type="button" class="secondary-btn" id="prevStep">Back</button>
+                <button type="button" class="primary-btn" id="nextStep">Next</button>
+                <button type="submit" class="primary-btn hidden" id="submitAssessment">View My Results</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <section id="results" class="page" aria-label="Results section">
+          <div class="section-heading">
+            <p class="eyebrow">Your estimate</p>
+            <h2>Assessment Result</h2>
+          </div>
+
+          <div class="results-card" id="resultsCard">
+            <div class="gauge-wrap">
+              <svg class="score-gauge" viewBox="0 0 220 220" aria-label="Burnout risk score gauge">
+                <defs>
+                  <linearGradient id="gaugeGradient" x1="0%" x2="100%" y1="0%" y2="100%">
+                    <stop offset="0%" stop-color="#7c8cff" />
+                    <stop offset="50%" stop-color="#6ee7ff" />
+                    <stop offset="100%" stop-color="#ff8fab" />
+                  </linearGradient>
+                </defs>
+                <circle class="gauge-track" cx="110" cy="110" r="82"></circle>
+                <circle class="gauge-progress" id="gaugeProgress" cx="110" cy="110" r="82"></circle>
+                <text x="110" y="104" class="gauge-score" id="gaugeScore">0</text>
+                <text x="110" y="132" class="gauge-outof">/ 100</text>
+              </svg>
+            </div>
+
+            <div class="result-copy">
+              <div class="result-chip" id="resultCategory">Low risk</div>
+              <h3 id="resultTitle">Your overall estimate</h3>
+              <p id="resultExplanation">
+                This educational estimate reflects your current balance between study demands, sleep, stress, and recovery habits.
+              </p>
+
+              <div class="result-meta">
+                <div>
+                  <span>Category</span>
+                  <strong id="resultCategoryText">Low estimated risk</strong>
+                </div>
+                <div>
+                  <span>Estimated risk</span>
+                  <strong id="resultRiskLabel">0/100</strong>
+                </div>
+              </div>
+
+              <div class="result-actions">
+                <button class="primary-btn" type="button" data-nav="dashboard">View Dashboard</button>
+                <button class="secondary-btn" type="button" id="retakeAssessmentBtn">Retake Assessment</button>
+                <button class="ghost-btn" type="button" id="downloadReportBtn">Download Report</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="analysis-grid">
+            <div class="panel-box">
+              <div class="panel-header">
+                <h3>Main contributing factors</h3>
+              </div>
+              <div id="factorList" class="factor-list"></div>
+            </div>
+
+            <div class="panel-box">
+              <div class="panel-header">
+                <h3>Risk factor breakdown</h3>
+              </div>
+              <div class="chart-shell">
+                <canvas id="factorChart" aria-label="Risk factor chart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-box recommendations-box">
+            <div class="panel-header">
+              <h3>Recommendations</h3>
+            </div>
+            <div id="recommendationList" class="recommendation-list"></div>
+          </div>
+        </section>
+
+        <section id="dashboard" class="page" aria-label="Dashboard section">
+          <div class="section-heading">
+            <p class="eyebrow">Your progress</p>
+            <h2>Student Dashboard</h2>
+          </div>
+
+          <div id="dashboardEmpty" class="empty-state hidden">
+            <div class="empty-icon">📉</div>
+            <h3>No assessments yet</h3>
+            <p>Complete your first burnout check to unlock trends, score history, and personalized suggestions.</p>
+            <button class="primary-btn" type="button" data-nav="assessment">Start Assessment</button>
+          </div>
+
+          <div id="dashboardContent" class="dashboard-content hidden">
+            <div class="stats-grid">
+              <article class="stat-card">
+                <span>Latest score</span>
+                <strong id="latestScoreValue">0</strong>
+                <small id="latestCategoryValue">Low</small>
+              </article>
+              <article class="stat-card">
+                <span>Completed checks</span>
+                <strong id="assessmentCountValue">0</strong>
+                <small>Total reflections</small>
+              </article>
+              <article class="stat-card">
+                <span>Average study hours</span>
+                <strong id="avgStudyHoursValue">0h</strong>
+                <small>Across saved records</small>
+              </article>
+              <article class="stat-card">
+                <span>Average sleep</span>
+                <strong id="avgSleepValue">0h</strong>
+                <small>Nightly average</small>
+              </article>
+            </div>
+
+            <div class="dashboard-grid">
+              <div class="panel-box wide-box">
+                <div class="panel-header">
+                  <h3>Assessment trend</h3>
+                </div>
+                <div class="chart-shell">
+                  <canvas id="scoreTrendChart" aria-label="Score trend chart"></canvas>
+                </div>
+              </div>
+
+              <div class="panel-box">
+                <div class="panel-header">
+                  <h3>Risk factor comparison</h3>
+                </div>
+                <div class="chart-shell">
+                  <canvas id="factorComparisonChart" aria-label="Factor comparison chart"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <div class="dashboard-lower-grid">
+              <div class="panel-box">
+                <div class="panel-header">
+                  <h3>Recent assessments</h3>
+                </div>
+                <div id="recentHistoryList" class="history-list compact"></div>
+              </div>
+
+              <div class="panel-box">
+                <div class="panel-header">
+                  <h3>Recommended actions</h3>
+                </div>
+                <div id="dashboardRecommendations" class="recommendation-list compact"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="planner" class="page" aria-label="Study planner section">
+          <div class="section-heading">
+            <p class="eyebrow">Planning support</p>
+            <h2>Weekly Study Planner</h2>
+          </div>
+
+          <div class="planner-layout">
+            <div class="panel-box planner-form-card">
+              <div class="panel-header">
+                <h3>Add study task</h3>
+              </div>
+
+              <form id="plannerForm" class="planner-form">
+                <label>
+                  Subject or task
+                  <input type="text" id="plannerSubject" name="subject" placeholder="e.g. Biology revision" required />
+                </label>
+
+                <div class="field-row two-col">
+                  <label>
+                    Day
+                    <select id="plannerDay" name="day" required>
+                      <option value="Monday">Monday</option>
+                      <option value="Tuesday">Tuesday</option>
+                      <option value="Wednesday">Wednesday</option>
+                      <option value="Thursday">Thursday</option>
+                      <option value="Friday">Friday</option>
+                      <option value="Saturday">Saturday</option>
+                      <option value="Sunday">Sunday</option>
+                    </select>
+                  </label>
+
+                  <label>
+                    Start time
+                    <input type="time" id="plannerTime" name="time" required />
+                  </label>
+                </div>
+
+                <label>
+                  Duration (minutes)
+                  <input type="number" id="plannerDuration" name="duration" min="15" step="15" value="60" required />
+                </label>
+
+                <div class="planner-actions">
+                  <button type="submit" class="primary-btn" id="savePlannerTask">Add task</button>
+                  <button type="button" class="secondary-btn" id="resetPlannerBtn">Reset planner</button>
+                </div>
+              </form>
+            </div>
+
+            <div class="panel-box planner-summary-card">
+              <div class="panel-header">
+                <h3>Plan overview</h3>
+              </div>
+              <div id="plannerSummary" class="planner-summary"></div>
+              <div class="reminder-note">
+                <strong>Break reminder:</strong> Try a short break every 50–60 minutes of focused study to support concentration and recovery.
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-box planner-list-card">
+            <div class="panel-header">
+              <h3>Your weekly tasks</h3>
+            </div>
+            <div id="plannerList" class="planner-list"></div>
+          </div>
+        </section>
+
+        <section id="history" class="page" aria-label="History section">
+          <div class="section-heading">
+            <p class="eyebrow">Saved reflections</p>
+            <h2>Assessment History</h2>
+          </div>
+
+          <div class="history-actions">
+            <button class="secondary-btn" id="clearHistoryBtn" type="button">Clear All History</button>
+          </div>
+
+          <div id="historyList" class="history-list"></div>
+        </section>
+
+        <section id="about" class="page" aria-label="About and help section">
+          <div class="section-heading">
+            <p class="eyebrow">Understanding burnout</p>
+            <h2>About this project</h2>
+          </div>
+
+          <div class="about-grid">
+            <div class="panel-box">
+              <h3>What is academic burnout?</h3>
+              <p>Academic burnout can involve chronic exhaustion, reduced motivation, difficulty concentrating, and feeling overwhelmed by study demands over time.</p>
+            </div>
+            <div class="panel-box">
+              <h3>Common signs</h3>
+              <p>Persistent tiredness, reduced focus, irritability, procrastination, poor sleep, and feeling detached from studies are common warning signs.</p>
+            </div>
+            <div class="panel-box">
+              <h3>Project purpose</h3>
+              <p>This project is built to help students reflect on patterns related to overload and wellness in a simple, supportive, and educational way.</p>
+            </div>
+            <div class="panel-box">
+              <h3>How the score is calculated</h3>
+              <p>Each answer contributes to a weighted score based on indicators like sleep, study load, stress, motivation, breaks, satisfaction, and workload balance. The result is then normalized to a 0–100 estimate.</p>
+            </div>
+            <div class="panel-box">
+              <h3>Limitations</h3>
+              <p>This is a frontend-only rule-based model, not a clinically validated diagnostic tool. It does not replace a professional assessment and cannot predict outcomes with medical certainty.</p>
+            </div>
+            <div class="panel-box">
+              <h3>Getting support</h3>
+              <p>If you feel persistently exhausted or distressed, speak with a trusted person, a college counselor, or a qualified mental health professional for support.</p>
+            </div>
+          </div>
+
+          <div class="faq-section panel-box">
+            <div class="panel-header">
+              <h3>Frequently asked questions</h3>
+            </div>
+            <div class="faq-list">
+              <details open>
+                <summary>Is this a real medical diagnosis?</summary>
+                <p>No. It is an educational estimate based on a transparent scoring model and is not intended to diagnose illness or replace professional care.</p>
+              </details>
+              <details>
+                <summary>Where is my data stored?</summary>
+                <p>All completed assessments and planner items are stored locally in your browser using localStorage. Clearing browser data will remove saved entries.</p>
+              </details>
+              <details>
+                <summary>Do I need to provide personal information?</summary>
+                <p>No. The tool does not require names, email addresses, or other personal identifiers.</p>
+              </details>
+              <details>
+                <summary>Can I print or save a report?</summary>
+                <p>Yes. Use the Download Report action to open the browser print dialog and save the page as PDF.</p>
+              </details>
+            </div>
+          </div>
+
+          <div class="privacy-box panel-box">
+            <div class="panel-header">
+              <h3>Privacy notice</h3>
+            </div>
+            <p>
+              Your assessment answers, history, and planner data are stored only in your browser and are not sent to external servers. This tool is for reflective, educational use and should not be treated as a secure medical record.
+            </p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/prediction.js"></script>
+    <script src="js/assessment.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/planner.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
